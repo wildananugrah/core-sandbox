@@ -1,0 +1,107 @@
+GET http://localhost:3000/
+
+###
+POST http://localhost:3000/account
+Content-Type: application/json
+
+{
+    "cif_number" : "1234567890",
+    "currency" : "IDR",
+    "status" : "BUKA"
+}
+
+# response:
+# HTTP/1.1 200 OK
+# X-Powered-By: Express
+# Content-Type: application/json; charset=utf-8
+# Content-Length: 221
+# ETag: W/"dd-Rq4rzh11kLpo+rYygim68UhjZmo"
+# Date: Wed, 27 Jul 2022 06:54:27 GMT
+# Connection: close
+
+# {
+#   "account_number": "3697920481",
+#   "currency": "IDR",
+#   "balance": 0,
+#   "status": "BUKA",
+#   "cif_number": "1234567890",
+#   "_id": "62e0e123ecbb65f89a1d2dbc",
+#   "createdAt": "2022-07-27T06:54:27.132Z",
+#   "updatedAt": "2022-07-27T06:54:27.132Z",
+#   "__v": 0
+# }
+
+
+###
+GET http://localhost:3000/accounts/1234567890
+
+# response:
+# HTTP/1.1 200 OK
+# X-Powered-By: Express
+# Content-Type: application/json; charset=utf-8
+# Content-Length: 445
+# ETag: W/"1bd-Exy5D/S75JlM+gY0mOJh42AM354"
+# Date: Wed, 27 Jul 2022 06:54:37 GMT
+# Connection: close
+
+# [
+#   {
+#     "_id": "62e0e06f9b3c72694a7881d9",
+#     "account_number": "7256668715",
+#     "currency": "IDR",
+#     "balance": 0,
+#     "status": "BUKA",
+#     "cif_number": "1234567890",
+#     "createdAt": "2022-07-27T06:51:27.885Z",
+#     "updatedAt": "2022-07-27T06:51:27.885Z",
+#     "__v": 0
+#   },
+#   {
+#     "_id": "62e0e123ecbb65f89a1d2dbc",
+#     "account_number": "3697920481",
+#     "currency": "IDR",
+#     "balance": 0,
+#     "status": "BUKA",
+#     "cif_number": "1234567890",
+#     "createdAt": "2022-07-27T06:54:27.132Z",
+#     "updatedAt": "2022-07-27T06:54:27.132Z",
+#     "__v": 0
+#   }
+# ]
+
+
+###
+GET http://localhost:3000/account/7256668715
+
+# response:
+# HTTP/1.1 200 OK
+# X-Powered-By: Express
+# Content-Type: application/json; charset=utf-8
+# Content-Length: 221
+# ETag: W/"dd-C5Q5CrYNesTU4RdpusS7yrgssEo"
+# Date: Wed, 27 Jul 2022 06:55:51 GMT
+# Connection: close
+
+# {
+#   "_id": "62e0e06f9b3c72694a7881d9",
+#   "account_number": "7256668715",
+#   "currency": "IDR",
+#   "balance": 0,
+#   "status": "BUKA",
+#   "cif_number": "1234567890",
+#   "createdAt": "2022-07-27T06:51:27.885Z",
+#   "updatedAt": "2022-07-27T06:51:27.885Z",
+#   "__v": 0
+# }
+
+
+###
+PUT http://localhost:3000/account/7256668715
+Content-Type: application/json
+
+{
+    "status" : "TTUP"
+}
+
+###
+DELETE http://localhost:3000/account/7256668715
