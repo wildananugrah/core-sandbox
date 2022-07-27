@@ -1,7 +1,73 @@
 @host=http://localhost:4000
 
 ###
-GET {{host}}/historical_transaction/8496085824/0/100
+GET {{host}}/historical_transaction/2746846644/0/100
+
+# response:
+# HTTP/1.1 200 OK
+# Server: nginx/1.23.1
+# Date: Wed, 27 Jul 2022 13:59:40 GMT
+# Content-Type: application/json; charset=utf-8
+# Content-Length: 1122
+# Connection: close
+# X-Powered-By: Express
+# ETag: W/"462-b4ksBQijB2VFabr92eaaRr+BVKo"
+
+# {
+#   "elapsed_time": "21ms",
+#   "data": [
+#     {
+#       "_id": "62e1449f5a2ffc4054f9a487",
+#       "account_number": "2746846644",
+#       "current_balance": 100,
+#       "amount": 300,
+#       "journal_number": "3902680656",
+#       "action": "DEBIT",
+#       "transaction_type": "TRANSFER",
+#       "createdAt": "2022-07-27T13:58:55.695Z",
+#       "updatedAt": "2022-07-27T13:58:55.695Z",
+#       "__v": 0
+#     },
+#     {
+#       "_id": "62e1449e5a2ffc4054f9a481",
+#       "account_number": "2746846644",
+#       "current_balance": 400,
+#       "amount": 300,
+#       "journal_number": "8799638257",
+#       "action": "DEBIT",
+#       "transaction_type": "TRANSFER",
+#       "createdAt": "2022-07-27T13:58:54.559Z",
+#       "updatedAt": "2022-07-27T13:58:54.559Z",
+#       "__v": 0
+#     },
+#     {
+#       "_id": "62e14475ef39f6f45e83fed4",
+#       "account_number": "2746846644",
+#       "current_balance": 700,
+#       "amount": 300,
+#       "journal_number": "3665987063",
+#       "action": "DEBIT",
+#       "transaction_type": "TRANSFER",
+#       "createdAt": "2022-07-27T13:58:14.000Z",
+#       "updatedAt": "2022-07-27T13:58:14.000Z",
+#       "__v": 0
+#     },
+#     {
+#       "_id": "62e1445fef39f6f45e83fed2",
+#       "account_number": "2746846644",
+#       "current_balance": 1000,
+#       "amount": 1000,
+#       "journal_number": "7873872729",
+#       "action": "CREDIT",
+#       "transaction_type": "DEPOSIT",
+#       "description": "DEPOSIT MONEY FIRST",
+#       "createdAt": "2022-07-27T13:57:51.730Z",
+#       "updatedAt": "2022-07-27T13:57:51.730Z",
+#       "__v": 0
+#     }
+#   ]
+# }
+
 
 ### 
 GET {{host}}/historical_transaction/5943889126/0/100

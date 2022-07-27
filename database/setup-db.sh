@@ -1,5 +1,5 @@
 # db account
-docker run -d --name db_account -p 5000:27017 mongo
+docker run -d --name db_sandbox-core -p 5000:27017 mongo
 
 # # db simulator
 # docker run -d --name db_simulator -p 7000:27017 mongo

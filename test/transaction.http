@@ -1,22 +1,56 @@
 @host=http://localhost:4000
 
-### credit 8413644913
+### credit 2746846644
 POST {{host}}/transaction/credit
 Content-Type: application/json
 
 {
-    "account_number" : "8413644913",
-    "amount": 1000
+    "account_number" : "2746846644",
+    "amount": 1000,
+    "description": "DEPOSIT MONEY FIRST"
 }
 
-### debit 6904644676
+# response:
+# HTTP/1.1 200 OK
+# Server: nginx/1.23.1
+# Date: Wed, 27 Jul 2022 13:59:59 GMT
+# Content-Type: application/json; charset=utf-8
+# Content-Length: 113
+# Connection: close
+# X-Powered-By: Express
+# ETag: W/"71-pUmAzzpNOTKM7BQ2J4HhZMIPFwM"
+
+# {
+#   "elapsed_time": "19ms",
+#   "message": "2746846644 has been credited by 1000 successfully",
+#   "journal_number": 9439693205
+# }
+
+
+### debit 6203573930
 POST {{host}}/transaction/debit
 Content-Type: application/json
 
 {
-    "account_number" : "6904644676",
+    "account_number" : "6203573930",
     "amount": 100
 }
+
+# response:
+# HTTP/1.1 200 OK
+# Server: nginx/1.23.1
+# Date: Wed, 27 Jul 2022 14:00:17 GMT
+# Content-Type: application/json; charset=utf-8
+# Content-Length: 84
+# Connection: close
+# X-Powered-By: Express
+# ETag: W/"54-gemwiRXpJRBKgAAUHJaj/xyB5l0"
+
+# {
+#   "elapsed_time": "18ms",
+#   "message": "6203573930 has been deducted by 100 successfully"
+# }
+
 
 ### transfer
 POST {{host}}/transaction/transfer
@@ -24,10 +58,98 @@ Content-Type: application/json
 
 {
     "cif_number": "1234567890",
-    "debit_account_number" : "8413644913",
-    "credit_account_number" : "6904644676",
+    "debit_account_number" : "2746846644",
+    "credit_account_number" : "6203573930",
     "amount" : 300
 }
 
+# response:
+# HTTP/1.1 200 OK
+# Server: nginx/1.23.1
+# Date: Wed, 27 Jul 2022 14:00:09 GMT
+# Content-Type: application/json; charset=utf-8
+# Content-Length: 102
+# Connection: close
+# X-Powered-By: Express
+# ETag: W/"66-qtc5o/pAW58AyKVKFILVpSOa8C0"
+
+# {
+#   "elapsed_time": "45ms",
+#   "message": "300 has been transfered from 2746846644 to 6203573930 successfully"
+# }
+
+
 ### transactions
 GET {{host}}/transactions/1234567890
+
+# response:
+# HTTP/1.1 200 OK
+# Server: nginx/1.23.1
+# Date: Wed, 27 Jul 2022 14:00:25 GMT
+# Content-Type: application/json; charset=utf-8
+# Content-Length: 1434
+# Connection: close
+# X-Powered-By: Express
+# ETag: W/"59a-CX0E1vteEid7WXMf2hSyxzgywwU"
+
+# {
+#   "elapsed_time": "4ms",
+#   "data": [
+#     {
+#       "_id": "62e144e95a2ffc4054f9a496",
+#       "cif_number": "1234567890",
+#       "debit_account_number": "2746846644",
+#       "debit_account_balance": 800,
+#       "credit_account_number": "6203573930",
+#       "credit_account_balance": 1400,
+#       "amount": 300,
+#       "transaction_type": "TRANSFER",
+#       "journal_number": "8734655800",
+#       "createdAt": "2022-07-27T14:00:09.692Z",
+#       "updatedAt": "2022-07-27T14:00:09.692Z",
+#       "__v": 0
+#     },
+#     {
+#       "_id": "62e1449f5a2ffc4054f9a48b",
+#       "cif_number": "1234567890",
+#       "debit_account_number": "2746846644",
+#       "debit_account_balance": 100,
+#       "credit_account_number": "6203573930",
+#       "credit_account_balance": 700,
+#       "amount": 300,
+#       "transaction_type": "TRANSFER",
+#       "journal_number": "3902680656",
+#       "createdAt": "2022-07-27T13:58:55.707Z",
+#       "updatedAt": "2022-07-27T13:58:55.707Z",
+#       "__v": 0
+#     },
+#     {
+#       "_id": "62e1449e5a2ffc4054f9a485",
+#       "cif_number": "1234567890",
+#       "debit_account_number": "2746846644",
+#       "debit_account_balance": 400,
+#       "credit_account_number": "6203573930",
+#       "credit_account_balance": 1000,
+#       "amount": 300,
+#       "transaction_type": "TRANSFER",
+#       "journal_number": "8799638257",
+#       "createdAt": "2022-07-27T13:58:54.574Z",
+#       "updatedAt": "2022-07-27T13:58:54.574Z",
+#       "__v": 0
+#     },
+#     {
+#       "_id": "62e14476ef39f6f45e83fed8",
+#       "cif_number": "1234567890",
+#       "debit_account_number": "2746846644",
+#       "debit_account_balance": 700,
+#       "credit_account_number": "6203573930",
+#       "credit_account_balance": 1300,
+#       "amount": 300,
+#       "transaction_type": "TRANSFER",
+#       "journal_number": "3665987063",
+#       "createdAt": "2022-07-27T13:58:14.011Z",
+#       "updatedAt": "2022-07-27T13:58:14.011Z",
+#       "__v": 0
+#     }
+#   ]
+# }

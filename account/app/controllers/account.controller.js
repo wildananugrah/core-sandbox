@@ -4,9 +4,13 @@ const randomLengthNumber = require('../utils/random_number.js');
 // Create and Save a new Account
 exports.create = (req, res) => {
     
+    var start = new Date()
+
     // Validate request
     if(!req.body) {
+        var elapsed_time = new Date() - start
         return res.status(400).send({
+            elapsed_time: `${elapsed_time}ms`,
             message: "Account content can not be empty"
         });
     }
@@ -23,46 +27,66 @@ exports.create = (req, res) => {
     // Save Account in the database
     account.save()
     .then(data => {
-        res.send(data);
+        var elapsed_time = new Date() - start
+        res.send({data : data, elapsed_time: `${elapsed_time}ms`});
     }).catch(err => {
         res.status(500).send({
+            elapsed_time: `${elapsed_time}ms`,
             message: err.message || "Some error occurred while creating the Account."
         });
     });
 };
 
 exports.update_balance = (req, res) => {
+
+    var start = new Date()
+
     // Validate request
     if(!req.body) {
+        var elapsed_time = new Date() - start
         return res.status(400).send({
+            elapsed_time: `${elapsed_time}ms`,
             message: "Account content can not be empty"
         });
     }
 
     Account.findOneAndUpdate({account_number: req.params.account_number}, {balance : req.body.balance})
     .then(account => {
+        var elapsed_time = new Date() - start
         if(!account) {
             return res.status(404).send({
+                elapsed_time: `${elapsed_time}ms`,
                 message: "Account not found with account_number " + req.params.account_number
             });
         }
-        res.send({message: "Account updated successfully!"});
+        
+        res.send({elapsed_time: `${elapsed_time}ms`, message: "Account updated successfully!"});
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+            var elapsed_time = new Date() - start
             return res.status(404).send({
+                elapsed_time: `${elapsed_time}ms`,
                 message: "Account not found with account_number " + req.params.account_number
             });                
         }
+
+        var elapsed_time = new Date() - start
         return res.status(500).send({
+            elapsed_time: `${elapsed_time}ms`,
             message: "Could not delete account with account_number " + req.params.account_number
         });
     });
 }
 
 exports.settlement = async (req, res) => {
+    
+    var start = new Date()
+
     // Validate request
     if(!req.body) {
+        var elapsed_time = new Date() - start
         return res.status(400).send({
+            elapsed_time: `${elapsed_time}ms`,
             message: "Account content can not be empty"
         });
     }
@@ -72,7 +96,9 @@ exports.settlement = async (req, res) => {
         const debit_account_update_response = await Account.findOneAndUpdate({account_number: req.body.debit_account_number}, {balance : req.body.debit_account_balance})
         if(!debit_account_update_response)
         {
+            var elapsed_time = new Date() - start
             return res.status(404).send({
+                elapsed_time: `${elapsed_time}ms`,
                 message: "Account not found with account_number " + req.body.debit_account_number
             });
         }
@@ -80,11 +106,16 @@ exports.settlement = async (req, res) => {
     catch (err)
     {
         if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+            var elapsed_time = new Date() - start
             return res.status(404).send({
+                elapsed_time: `${elapsed_time}ms`,
                 message: "Account not found with account_number " + req.body.debit_account_number
             });                
         }
+
+        var elapsed_time = new Date() - start
         return res.status(500).send({
+            elapsed_time: `${elapsed_time}ms`,
             message: "Could not update account with account_number " + req.body.debit_account_number
         });
     }
@@ -94,7 +125,9 @@ exports.settlement = async (req, res) => {
         const credit_account_update_response = await Account.findOneAndUpdate({account_number: req.body.credit_account_number}, {balance : req.body.credit_account_balance})
         if(!credit_account_update_response)
         {
+            var elapsed_time = new Date() - start
             return res.status(404).send({
+                elapsed_time: `${elapsed_time}ms`,
                 message: "Account not found with account_number " + req.body.credit_account_number
             });
         }
@@ -102,25 +135,38 @@ exports.settlement = async (req, res) => {
     catch (err)
     {
         if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+            var elapsed_time = new Date() - start
             return res.status(404).send({
+                elapsed_time: `${elapsed_time}ms`,
                 message: "Account not found with account_number " + req.body.debit_account_number
             });                
         }
+
+        var elapsed_time = new Date() - start
         return res.status(500).send({
+            elapsed_time: `${elapsed_time}ms`,
             message: "Could not update account with account_number " + req.body.debit_account_number
         });
     }
 
-    res.send({message: "Account updated successfully!"});
+    var elapsed_time = new Date() - start
+    res.send({elapsed_time: `${elapsed_time}ms`, message: "Account updated successfully!"});
 }
 
 // Retrieve and return all accounts from the database.
 exports.findAll = (req, res) => {
+    
+    var start = new Date()
+
     Account.where({cif_number: req.params.cif_number}).find()
     .then(accounts => {
-        res.send(accounts);
+
+        var elapsed_time = new Date() - start
+        res.send({elapsed_time: `${elapsed_time}ms`, data: accounts});
     }).catch(err => {
+        var elapsed_time = new Date() - start
         res.status(500).send({
+            elapsed_time: `${elapsed_time}ms`,
             message: err.message || "Some error occurred while retrieving accounts."
         });
     });
@@ -128,21 +174,32 @@ exports.findAll = (req, res) => {
 
 // Find a single account with a account_number
 exports.findOne = (req, res) => {
+
+    var start = new Date()
+
     Account.where({account_number: req.params.account_number}).findOne()
     .then(account => {
         if(!account) {
+            var elapsed_time = new Date() - start
             return res.status(404).send({
+                elapsed_time: `${elapsed_time}ms`,
                 message: "Account not found with account_number " + req.params.account_number
             });            
         }
-        res.send(account);
+        var elapsed_time = new Date() - start
+        res.send({ elapsed_time: `${elapsed_time}ms`, data: account });
     }).catch(err => {
         if(err.kind === 'ObjectId') {
+            var elapsed_time = new Date() - start
             return res.status(404).send({
+                elapsed_time: `${elapsed_time}ms`,
                 message: "Account not found with account_number " + req.params.account_number
             });                
         }
+
+        var elapsed_time = new Date() - start
         return res.status(500).send({
+            elapsed_time: `${elapsed_time}ms`,
             message: "Error retrieving account with account_number " + req.params.account_number
         });
     });
@@ -150,9 +207,14 @@ exports.findOne = (req, res) => {
 
 // Update a account identified by the account_number in the request
 exports.update = (req, res) => {
+
+    var start = new Date()
+
     // Validate Request
     if(!req.body) {
+        var elapsed_time = new Date() - start
         return res.status(400).send({
+            elapsed_time: `${elapsed_time}ms`,
             message: "Account content can not be empty"
         });
     }
@@ -161,18 +223,25 @@ exports.update = (req, res) => {
     Account.findOneAndUpdate({account_number: req.params.account_number}, {status : req.body.status})
     .then(account => {
         if(!account) {
+            var elapsed_time = new Date() - start
             return res.status(404).send({
+                elapsed_time: `${elapsed_time}ms`,
                 message: "Account not found with account_number " + req.params.account_number
             });
         }
-        res.send({message: "Account updated successfully!"});
+        var elapsed_time = new Date() - start
+        res.send({elapsed_time: `${elapsed_time}ms`, message: "Account updated successfully!"});
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+            var elapsed_time = new Date() - start
             return res.status(404).send({
+                elapsed_time: `${elapsed_time}ms`,
                 message: "Account not found with account_number " + req.params.account_number
             });                
         }
+        var elapsed_time = new Date() - start
         return res.status(500).send({
+            elapsed_time: `${elapsed_time}ms`,
             message: "Could not delete account with account_number " + req.params.account_number
         });
     });
@@ -180,21 +249,32 @@ exports.update = (req, res) => {
 
 // Delete a account with the specified account_number in the request
 exports.delete = (req, res) => {
+
+    var start = new Date()
+
     Account.findOneAndRemove({account_number: req.params.account_number})
     .then(account => {
         if(!account) {
+            var elapsed_time = new Date() - start
             return res.status(404).send({
+                elapsed_time: `${elapsed_time}ms`,
                 message: "Account not found with account_number " + req.params.account_number
             });
         }
-        res.send({message: "Account deleted successfully!"});
+        var elapsed_time = new Date() - start
+        res.send({elapsed_time: `${elapsed_time}ms`, message: "Account deleted successfully!"});
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+            var elapsed_time = new Date() - start
             return res.status(404).send({
+                elapsed_time: `${elapsed_time}ms`,
                 message: "Account not found with account_number " + req.params.account_number
             });                
         }
+
+        var elapsed_time = new Date() - start
         return res.status(500).send({
+            elapsed_time: `${elapsed_time}ms`,
             message: "Could not delete account with account_number " + req.params.account_number
         });
     });

@@ -15,114 +15,192 @@ Content-Type: application/json
 
 # response:
 # HTTP/1.1 200 OK
-# X-Powered-By: Express
+# Server: nginx/1.23.1
+# Date: Wed, 27 Jul 2022 13:22:14 GMT
 # Content-Type: application/json; charset=utf-8
-# Content-Length: 221
-# ETag: W/"dd-Rq4rzh11kLpo+rYygim68UhjZmo"
-# Date: Wed, 27 Jul 2022 06:54:27 GMT
+# Content-Length: 251
 # Connection: close
+# X-Powered-By: Express
+# ETag: W/"fb-AZNOo8k6VRYhOyoVEnp4VIzB1us"
 
 # {
-#   "account_number": "3697920481",
-#   "currency": "IDR",
-#   "balance": 0,
-#   "status": "BUKA",
-#   "cif_number": "1234567890",
-#   "_id": "62e0e123ecbb65f89a1d2dbc",
-#   "createdAt": "2022-07-27T06:54:27.132Z",
-#   "updatedAt": "2022-07-27T06:54:27.132Z",
-#   "__v": 0
+#   "data": {
+#     "account_number": "4562270602",
+#     "currency": "IDR",
+#     "balance": 0,
+#     "status": "BUKA",
+#     "cif_number": "1234567890",
+#     "_id": "62e13c0627e82f33a898099b",
+#     "createdAt": "2022-07-27T13:22:14.950Z",
+#     "updatedAt": "2022-07-27T13:22:14.950Z",
+#     "__v": 0
+#   },
+#   "elapsed_time": "5ms"
 # }
 
 ###
-PUT {{host}}/account/update_balance/5862918098
+PUT {{host}}/account/update_balance/3617830999
 Content-Type: application/json
 
 {
     "balance" : 1000
 }
 
+# response:
+# HTTP/1.1 200 OK
+# Server: nginx/1.23.1
+# Date: Wed, 27 Jul 2022 13:22:42 GMT
+# Content-Type: application/json; charset=utf-8
+# Content-Length: 65
+# Connection: close
+# X-Powered-By: Express
+# ETag: W/"41-EncijTYWA/s1Tz79yO09zcGqyt4"
+
+# {
+#   "elapsed_time": "18ms",
+#   "message": "Account updated successfully!"
+# }
+
+
 ###
 PUT {{host}}/account/settlement
 Content-Type: application/json
 
 {
-    "debit_account_number" : "3726629609",
+    "debit_account_number" : "3617830999",
     "debit_account_balance" : 700,
-    "credit_account_number" : "7936500042",
+    "credit_account_number" : "9907819018",
     "credit_account_balance" : 300
 }
+
+# response:
+# HTTP/1.1 200 OK
+# Server: nginx/1.23.1
+# Date: Wed, 27 Jul 2022 13:24:27 GMT
+# Content-Type: application/json; charset=utf-8
+# Content-Length: 65
+# Connection: close
+# X-Powered-By: Express
+# ETag: W/"41-zFrrw6QniB7RDf4GEWhwmq3rveo"
+
+# {
+#   "elapsed_time": "25ms",
+#   "message": "Account updated successfully!"
+# }
+
 
 ###
 GET {{host}}/accounts/1234567890
 
 # response:
 # HTTP/1.1 200 OK
-# X-Powered-By: Express
+# Server: nginx/1.23.1
+# Date: Wed, 27 Jul 2022 13:22:59 GMT
 # Content-Type: application/json; charset=utf-8
-# Content-Length: 445
-# ETag: W/"1bd-Exy5D/S75JlM+gY0mOJh42AM354"
-# Date: Wed, 27 Jul 2022 06:54:37 GMT
+# Content-Length: 1144
 # Connection: close
-
-# [
-#   {
-#     "_id": "62e0e06f9b3c72694a7881d9",
-#     "account_number": "7256668715",
-#     "currency": "IDR",
-#     "balance": 0,
-#     "status": "BUKA",
-#     "cif_number": "1234567890",
-#     "createdAt": "2022-07-27T06:51:27.885Z",
-#     "updatedAt": "2022-07-27T06:51:27.885Z",
-#     "__v": 0
-#   },
-#   {
-#     "_id": "62e0e123ecbb65f89a1d2dbc",
-#     "account_number": "3697920481",
-#     "currency": "IDR",
-#     "balance": 0,
-#     "status": "BUKA",
-#     "cif_number": "1234567890",
-#     "createdAt": "2022-07-27T06:54:27.132Z",
-#     "updatedAt": "2022-07-27T06:54:27.132Z",
-#     "__v": 0
-#   }
-# ]
-
-
-###
-GET {{host}}/account/3726629609
-
-# response:
-# HTTP/1.1 200 OK
 # X-Powered-By: Express
-# Content-Type: application/json; charset=utf-8
-# Content-Length: 221
-# ETag: W/"dd-C5Q5CrYNesTU4RdpusS7yrgssEo"
-# Date: Wed, 27 Jul 2022 06:55:51 GMT
-# Connection: close
+# ETag: W/"478-/dYA/nyCFHMo7+FlicdeLs6M3Ok"
 
 # {
-#   "_id": "62e0e06f9b3c72694a7881d9",
-#   "account_number": "7256668715",
-#   "currency": "IDR",
-#   "balance": 0,
-#   "status": "BUKA",
-#   "cif_number": "1234567890",
-#   "createdAt": "2022-07-27T06:51:27.885Z",
-#   "updatedAt": "2022-07-27T06:51:27.885Z",
-#   "__v": 0
+#   "elapsed_time": "7ms",
+#   "data": [
+#     {
+#       "_id": "62e13be472beed4499026758",
+#       "account_number": "9796527276",
+#       "currency": "IDR",
+#       "balance": 0,
+#       "status": "BUKA",
+#       "cif_number": "1234567890",
+#       "createdAt": "2022-07-27T13:21:40.652Z",
+#       "updatedAt": "2022-07-27T13:21:40.652Z",
+#       "__v": 0
+#     },
+#     {
+#       "_id": "62e13c0227e82f33a8980995",
+#       "account_number": "8059825621",
+#       "currency": "IDR",
+#       "balance": 0,
+#       "status": "BUKA",
+#       "cif_number": "1234567890",
+#       "createdAt": "2022-07-27T13:22:10.807Z",
+#       "updatedAt": "2022-07-27T13:22:10.807Z",
+#       "__v": 0
+#     }
+#   ]
 # }
 
 
+
 ###
-PUT {{host}}/account/7256668715
+GET {{host}}/account/2746846644
+
+# response:
+# HTTP/1.1 200 OK
+# Server: nginx/1.23.1
+# Date: Wed, 27 Jul 2022 13:25:54 GMT
+# Content-Type: application/json; charset=utf-8
+# Content-Length: 254
+# Connection: close
+# X-Powered-By: Express
+# ETag: W/"fe-uDSjXzg+WTF/tCnCPgjHNFw/wlk"
+
+# {
+#   "elapsed_time": "17ms",
+#   "data": {
+#     "_id": "62e13be472beed4499026758",
+#     "account_number": "9796527276",
+#     "currency": "IDR",
+#     "balance": 300,
+#     "status": "BUKA",
+#     "cif_number": "1234567890",
+#     "createdAt": "2022-07-27T13:21:40.652Z",
+#     "updatedAt": "2022-07-27T13:24:27.632Z",
+#     "__v": 0
+#   }
+# }
+
+
+
+###
+PUT {{host}}/account/9907819018
 Content-Type: application/json
 
 {
     "status" : "TTUP"
 }
 
+# response:
+# HTTP/1.1 200 OK
+# Server: nginx/1.23.1
+# Date: Wed, 27 Jul 2022 13:26:15 GMT
+# Content-Type: application/json; charset=utf-8
+# Content-Length: 65
+# Connection: close
+# X-Powered-By: Express
+# ETag: W/"41-tmrg5/NR9geNrM4EdT5ivkum/No"
+
+# {
+#   "elapsed_time": "11ms",
+#   "message": "Account updated successfully!"
+# }
+
+
 ###
-DELETE {{host}}/account/7256668715
+DELETE {{host}}/account/9907819018
+
+# response:
+# HTTP/1.1 200 OK
+# Server: nginx/1.23.1
+# Date: Wed, 27 Jul 2022 13:27:10 GMT
+# Content-Type: application/json; charset=utf-8
+# Content-Length: 64
+# Connection: close
+# X-Powered-By: Express
+# ETag: W/"40-T2LAYFdR74u9xM0oplixmk4EhXw"
+
+# {
+#   "elapsed_time": "8ms",
+#   "message": "Account deleted successfully!"
+# }
+
