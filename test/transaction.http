@@ -1,0 +1,29 @@
+@host=http://localhost:4000/transaction
+
+### credit 8413644913
+POST {{host}}/credit
+Content-Type: application/json
+
+{
+    "account_number" : "8413644913",
+    "amount": 1000
+}
+
+### debit 6904644676
+POST {{host}}/debit
+Content-Type: application/json
+
+{
+    "account_number" : "6904644676",
+    "amount": 100
+}
+
+### transfer
+POST {{host}}/transfer
+Content-Type: application/json
+
+{
+    "debit_account_number" : "8413644913",
+    "credit_account_number" : "6904644676",
+    "amount" : 300
+}

@@ -9,3 +9,5 @@ mkdir test
 touch test/normal.http
 touch test/index.test.js
 npm install 
+touch server.js
+touch app.Dockerfile

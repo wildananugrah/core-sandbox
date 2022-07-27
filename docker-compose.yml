@@ -15,6 +15,13 @@ services:
         environment: 
             MONGODB_HOST: mongodb://192.168.0.107:5000/core-sandbox
             ACCOUNT_HOST: http://account:3000
+    historical_transaction:
+        build:
+            context: ./historical_transaction
+            dockerfile: ./app.Dockerfile
+        container_name: historical_transaction
+        environment: 
+            MONGODB_HOST: mongodb://192.168.0.107:5000/core-sandbox
     nginx:
         build:
             context: ./nginx
