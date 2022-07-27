@@ -29,11 +29,11 @@ app.use(bodyParser.json())
 
 // define a simple route
 app.get('/', (req, res) => {
-    res.json({"message": "Welcome to Account application."});
+    res.json({"message": "Welcome to Transaction application."});
 });
 
 // Require Accont routes
-require('./app/routes/account.routes.js')(app);
+require('./app/routes/transaction.routes.js')(app);
 
 // listen for requests
 app.listen(3000, () => {

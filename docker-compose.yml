@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+    account:
+        build:
+            context: ./account
+            dockerfile: ./app.Dockerfile
+        container_name: account
+        environment: 
+            MONGODB_HOST: mongodb://192.168.0.107:5000/core-sandbox
+    transaction:
+        build:
+            context: ./transaction
+            dockerfile: ./app.Dockerfile
+        container_name: transaction
+        environment: 
+            MONGODB_HOST: mongodb://192.168.0.107:5000/core-sandbox
+            ACCOUNT_HOST: http://account:3000
+    nginx:
+        build:
+            context: ./nginx
+            dockerfile: ./app.Dockerfile
+        container_name: nginx
+        ports:
+            - "4000:80"

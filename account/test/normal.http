@@ -1,7 +1,10 @@
-GET http://localhost:3000/
+@host=http://localhost:4000
 
 ###
-POST http://localhost:3000/account
+GET {{host}}/
+
+###
+POST {{host}}/account
 Content-Type: application/json
 
 {
@@ -32,7 +35,7 @@ Content-Type: application/json
 # }
 
 ###
-PUT http://localhost:3000/account/update_balance/3726629609
+PUT {{host}}/account/update_balance/5862918098
 Content-Type: application/json
 
 {
@@ -40,7 +43,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:3000/account/settlement
+PUT {{host}}/account/settlement
 Content-Type: application/json
 
 {
@@ -51,7 +54,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/accounts/1234567890
+GET {{host}}/accounts/1234567890
 
 # response:
 # HTTP/1.1 200 OK
@@ -89,7 +92,7 @@ GET http://localhost:3000/accounts/1234567890
 
 
 ###
-GET http://localhost:3000/account/3726629609
+GET {{host}}/account/3726629609
 
 # response:
 # HTTP/1.1 200 OK
@@ -114,7 +117,7 @@ GET http://localhost:3000/account/3726629609
 
 
 ###
-PUT http://localhost:3000/account/7256668715
+PUT {{host}}/account/7256668715
 Content-Type: application/json
 
 {
@@ -122,4 +125,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/account/7256668715
+DELETE {{host}}/account/7256668715
