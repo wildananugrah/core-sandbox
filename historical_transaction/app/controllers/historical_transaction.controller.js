@@ -2,7 +2,7 @@ const Historical_Transaction = require('../models/historical_transaction.model.j
 
 exports.findAll = (req, res) => {
     Historical_Transaction.where({ account_number : req.params.account_number }).find()
-    .sort({'date': -1}).limit(req.params.limit).skip(req.params.skip)
+    .sort({'updatedAt': -1}).limit(req.params.limit).skip(req.params.skip)
     .then(historical_transactions => {
         if(!historical_transactions) {
             return res.status(404).send({

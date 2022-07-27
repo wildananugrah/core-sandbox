@@ -1,7 +1,7 @@
-@host=http://localhost:4000/transaction
+@host=http://localhost:4000
 
 ### credit 8413644913
-POST {{host}}/credit
+POST {{host}}/transaction/credit
 Content-Type: application/json
 
 {
@@ -10,7 +10,7 @@ Content-Type: application/json
 }
 
 ### debit 6904644676
-POST {{host}}/debit
+POST {{host}}/transaction/debit
 Content-Type: application/json
 
 {
@@ -19,11 +19,15 @@ Content-Type: application/json
 }
 
 ### transfer
-POST {{host}}/transfer
+POST {{host}}/transaction/transfer
 Content-Type: application/json
 
 {
+    "cif_number": "1234567890",
     "debit_account_number" : "8413644913",
     "credit_account_number" : "6904644676",
     "amount" : 300
 }
+
+### transactions
+GET {{host}}/transactions/1234567890

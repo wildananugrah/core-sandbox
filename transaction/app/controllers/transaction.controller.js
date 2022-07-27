@@ -261,6 +261,7 @@ exports.transfer = async (req, res) => {
 
     // Store Transaction transaction
     const transaction = new Transaction({
+        cif_number: req.body.cif_number,
         debit_account_number: req.body.debit_account_number,
         debit_account_balance: current_debit_account_balance,
         credit_account_number: req.body.credit_account_number, 
@@ -315,4 +316,27 @@ exports.transfer = async (req, res) => {
             message: "Could not update account with credit account_number " + req.body.credit_account_number
         });
     }
+}
+
+exports.findAll = (req, res) => {
+    Transaction.where({ account_number : req.params.cif_number }).find()
+    .sort({'updatedAt': -1}).limit(req.params.limit).skip(req.params.skip)
+    .then(transactions => {
+        if(!transactions) {
+            return res.status(404).send({
+                message: "Account not found with cif_number " + req.params.cif_number
+            });            
+        }
+        res.send(transactions);
+    })
+    .catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Account not found with cif_number " + req.params.cif_number
+            });                
+        }
+        return res.status(500).send({
+            message: "Error retrieving account with transaction cif_number: " + req.params.cif_number
+        });
+    })
 }

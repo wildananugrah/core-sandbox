@@ -9,4 +9,7 @@ module.exports = (app) => {
 
     // Transfer transaction
     app.post('/transaction/transfer', transaction.transfer);
+
+    // Find All Transaction by cif_number
+    app.get('/transactions/:cif_number', transaction.findAll);
 }

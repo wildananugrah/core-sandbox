@@ -23,6 +23,7 @@ POST {{host}}/transfer
 Content-Type: application/json
 
 {
+    "cif_number": "1234567890",
     "debit_account_number" : "2056165577",
     "credit_account_number" : "9658585427",
     "amount" : 3000
