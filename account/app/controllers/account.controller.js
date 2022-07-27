@@ -31,6 +31,89 @@ exports.create = (req, res) => {
     });
 };
 
+exports.update_balance = (req, res) => {
+    // Validate request
+    if(!req.body) {
+        return res.status(400).send({
+            message: "Account content can not be empty"
+        });
+    }
+
+    Account.findOneAndUpdate({account_number: req.params.account_number}, {balance : req.body.balance})
+    .then(account => {
+        if(!account) {
+            return res.status(404).send({
+                message: "Account not found with account_number " + req.params.account_number
+            });
+        }
+        res.send({message: "Account updated successfully!"});
+    }).catch(err => {
+        if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+            return res.status(404).send({
+                message: "Account not found with account_number " + req.params.account_number
+            });                
+        }
+        return res.status(500).send({
+            message: "Could not delete account with account_number " + req.params.account_number
+        });
+    });
+}
+
+exports.settlement = async (req, res) => {
+    // Validate request
+    if(!req.body) {
+        return res.status(400).send({
+            message: "Account content can not be empty"
+        });
+    }
+
+    // Update debit account balance
+    try{
+        const debit_account_update_response = await Account.findOneAndUpdate({account_number: req.body.debit_account_number}, {balance : req.body.debit_account_balance})
+        if(!debit_account_update_response)
+        {
+            return res.status(404).send({
+                message: "Account not found with account_number " + req.body.debit_account_number
+            });
+        }
+    } 
+    catch (err)
+    {
+        if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+            return res.status(404).send({
+                message: "Account not found with account_number " + req.body.debit_account_number
+            });                
+        }
+        return res.status(500).send({
+            message: "Could not update account with account_number " + req.body.debit_account_number
+        });
+    }
+
+    // Update credit account balance
+    try{
+        const credit_account_update_response = await Account.findOneAndUpdate({account_number: req.body.credit_account_number}, {balance : req.body.credit_account_balance})
+        if(!credit_account_update_response)
+        {
+            return res.status(404).send({
+                message: "Account not found with account_number " + req.body.credit_account_number
+            });
+        }
+    } 
+    catch (err)
+    {
+        if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+            return res.status(404).send({
+                message: "Account not found with account_number " + req.body.debit_account_number
+            });                
+        }
+        return res.status(500).send({
+            message: "Could not update account with account_number " + req.body.debit_account_number
+        });
+    }
+
+    res.send({message: "Account updated successfully!"});
+}
+
 // Retrieve and return all accounts from the database.
 exports.findAll = (req, res) => {
     Account.where({cif_number: req.params.cif_number}).find()

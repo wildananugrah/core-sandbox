@@ -31,6 +31,24 @@ Content-Type: application/json
 #   "__v": 0
 # }
 
+###
+PUT http://localhost:3000/account/update_balance/3726629609
+Content-Type: application/json
+
+{
+    "balance" : 1000
+}
+
+###
+PUT http://localhost:3000/account/settlement
+Content-Type: application/json
+
+{
+    "debit_account_number" : "3726629609",
+    "debit_account_balance" : 700,
+    "credit_account_number" : "7936500042",
+    "credit_account_balance" : 300
+}
 
 ###
 GET http://localhost:3000/accounts/1234567890
@@ -71,7 +89,7 @@ GET http://localhost:3000/accounts/1234567890
 
 
 ###
-GET http://localhost:3000/account/7256668715
+GET http://localhost:3000/account/3726629609
 
 # response:
 # HTTP/1.1 200 OK

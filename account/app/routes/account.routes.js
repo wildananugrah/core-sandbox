@@ -4,6 +4,12 @@ module.exports = (app) => {
     // Create a new account
     app.post('/account', account.create);
 
+    // Debit/Credit acounts
+    app.put('/account/settlement', account.settlement);
+
+    // Update balance account
+    app.put('/account/update_balance/:account_number', account.update_balance);
+
     // Retrieve all account
     app.get('/accounts/:cif_number', account.findAll);
 
