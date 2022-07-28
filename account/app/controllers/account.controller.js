@@ -11,7 +11,9 @@ exports.create = (req, res) => {
         var elapsed_time = new Date() - start
         return res.status(400).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Account content can not be empty"
+            data : {
+                message: "Account content can not be empty"
+            }
         });
     }
 
@@ -32,7 +34,9 @@ exports.create = (req, res) => {
     }).catch(err => {
         res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: err.message || "Some error occurred while creating the Account."
+            data : {
+                message: err.message || "Some error occurred while creating the Account."
+            }
         });
     });
 };
@@ -46,7 +50,9 @@ exports.update_balance = (req, res) => {
         var elapsed_time = new Date() - start
         return res.status(400).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Account content can not be empty"
+            data : {
+                message: "Account content can not be empty"
+            }
         });
     }
 
@@ -56,24 +62,35 @@ exports.update_balance = (req, res) => {
         if(!account) {
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.params.account_number
+                data : {
+                    message: "Account not found with account_number " + req.params.account_number
+                }
             });
         }
         
-        res.send({elapsed_time: `${elapsed_time}ms`, message: "Account updated successfully!"});
+        res.send({
+            elapsed_time: `${elapsed_time}ms`,
+            data : {
+                message: "Account updated successfully!"
+            }
+        });
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === 'NotFound') {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.params.account_number
+                data : {
+                    message: "Account not found with account_number " + req.params.account_number
+                }
             });                
         }
 
         var elapsed_time = new Date() - start
         return res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Could not delete account with account_number " + req.params.account_number
+            data : {
+                message: "Could not delete account with account_number " + req.params.account_number
+            }
         });
     });
 }
@@ -87,7 +104,9 @@ exports.settlement = async (req, res) => {
         var elapsed_time = new Date() - start
         return res.status(400).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Account content can not be empty"
+            data : {
+                message: "Account content can not be empty"
+            }
         });
     }
 
@@ -99,7 +118,9 @@ exports.settlement = async (req, res) => {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.body.debit_account_number
+                data : {
+                    message: "Account not found with account_number " + req.body.debit_account_number
+                }
             });
         }
     } 
@@ -109,14 +130,18 @@ exports.settlement = async (req, res) => {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.body.debit_account_number
+                data : {
+                    message: "Account not found with account_number " + req.body.debit_account_number
+                }
             });                
         }
 
         var elapsed_time = new Date() - start
         return res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Could not update account with account_number " + req.body.debit_account_number
+            data : {
+                message: "Could not update account with account_number " + req.body.debit_account_number
+            }
         });
     }
 
@@ -128,7 +153,9 @@ exports.settlement = async (req, res) => {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.body.credit_account_number
+                data : {
+                    message: "Account not found with account_number " + req.body.credit_account_number
+                }
             });
         }
     } 
@@ -138,19 +165,28 @@ exports.settlement = async (req, res) => {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.body.debit_account_number
+                data : {
+                    message: "Account not found with account_number " + req.body.debit_account_number
+                }
             });                
         }
 
         var elapsed_time = new Date() - start
         return res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Could not update account with account_number " + req.body.debit_account_number
+            data : {
+                message: "Could not update account with account_number " + req.body.debit_account_number
+            }
         });
     }
 
     var elapsed_time = new Date() - start
-    res.send({elapsed_time: `${elapsed_time}ms`, message: "Account updated successfully!"});
+    res.send({
+        elapsed_time: `${elapsed_time}ms`, 
+        data : {
+            message: "Account updated successfully!"
+        }
+    });
 }
 
 // Retrieve and return all accounts from the database.
@@ -167,7 +203,9 @@ exports.findAll = (req, res) => {
         var elapsed_time = new Date() - start
         res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: err.message || "Some error occurred while retrieving accounts."
+            data : {
+                message: err.message || "Some error occurred while retrieving accounts."
+            }
         });
     });
 };
@@ -183,7 +221,9 @@ exports.findOne = (req, res) => {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.params.account_number
+                data : {
+                    message: "Account not found with account_number " + req.params.account_number
+                }
             });            
         }
         var elapsed_time = new Date() - start
@@ -193,14 +233,18 @@ exports.findOne = (req, res) => {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.params.account_number
+                data : {
+                    message: "Account not found with account_number " + req.params.account_number
+                }
             });                
         }
 
         var elapsed_time = new Date() - start
         return res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Error retrieving account with account_number " + req.params.account_number
+            data : {
+                message: "Error retrieving account with account_number " + req.params.account_number
+            }
         });
     });
 };
@@ -215,7 +259,9 @@ exports.update = (req, res) => {
         var elapsed_time = new Date() - start
         return res.status(400).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Account content can not be empty"
+            data : {
+                message: "Account content can not be empty"
+            }
         });
     }
 
@@ -226,23 +272,34 @@ exports.update = (req, res) => {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.params.account_number
+                data : {
+                    message: "Account not found with account_number " + req.params.account_number
+                }
             });
         }
         var elapsed_time = new Date() - start
-        res.send({elapsed_time: `${elapsed_time}ms`, message: "Account updated successfully!"});
+        res.send({
+            elapsed_time: `${elapsed_time}ms`, 
+            data : {
+                message: "Account updated successfully!"
+            }
+        });
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === 'NotFound') {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.params.account_number
+                data : {
+                    message: "Account not found with account_number " + req.params.account_number
+                }
             });                
         }
         var elapsed_time = new Date() - start
         return res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Could not delete account with account_number " + req.params.account_number
+            data : {
+                message: "Could not delete account with account_number " + req.params.account_number
+            }
         });
     });
 };
@@ -258,24 +315,35 @@ exports.delete = (req, res) => {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.params.account_number
+                data : {
+                    message: "Account not found with account_number " + req.params.account_number
+                }
             });
         }
         var elapsed_time = new Date() - start
-        res.send({elapsed_time: `${elapsed_time}ms`, message: "Account deleted successfully!"});
+        res.send({
+            elapsed_time: `${elapsed_time}ms`, 
+            data : {
+                message: "Account deleted successfully!"
+            }
+        });
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === 'NotFound') {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.params.account_number
+                data :{
+                    message: "Account not found with account_number " + req.params.account_number
+                }
             });                
         }
 
         var elapsed_time = new Date() - start
         return res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Could not delete account with account_number " + req.params.account_number
+            data : {
+                message: "Could not delete account with account_number " + req.params.account_number
+            }
         });
     });
 };

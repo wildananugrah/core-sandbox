@@ -1,30 +1,118 @@
-@host=http://localhost:4000/transaction
+@host=http://localhost:4000/
 
-### credit 2056165577
-POST {{host}}/credit
+### credit 7724309116
+POST {{host}}/transaction/credit
 Content-Type: application/json
 
 {
-    "account_number" : "2056165577",
+    "account_number" : "7724309116",
     "amount": 1000
 }
 
-### debit 9658585427
-POST {{host}}/debit
+# response:
+# HTTP/1.1 200 OK
+# Server: nginx/1.23.1
+# Date: Thu, 28 Jul 2022 01:31:18 GMT
+# Content-Type: application/json; charset=utf-8
+# Content-Length: 122
+# Connection: close
+# X-Powered-By: Express
+# ETag: W/"7a-dEoycc1gBQNAnOjhyAEUWuY8cKM"
+
+# {
+#   "elapsed_time": "49ms",
+#   "data": {
+#     "message": "7531095214 has been credited by 1000 successfully",
+#     "journal_number": 2368854491
+#   }
+# }
+
+
+### debit 4902265825
+POST {{host}}/transaction/debit
 Content-Type: application/json
 
 {
-    "account_number" : "9658585427",
+    "account_number" : "4166388030",
     "amount": 100
 }
 
+# response:
+# HTTP/1.1 200 OK
+# Server: nginx/1.23.1
+# Date: Thu, 28 Jul 2022 01:31:31 GMT
+# Content-Type: application/json; charset=utf-8
+# Content-Length: 93
+# Connection: close
+# X-Powered-By: Express
+# ETag: W/"5d-eQlf48u1qQhwhfR+nBzBWMn8ENQ"
+
+# {
+#   "elapsed_time": "19ms",
+#   "data": {
+#     "message": "4902265825 has been deducted by 100 successfully"
+#   }
+# }
+
+
 ### transfer
-POST {{host}}/transfer
+POST {{host}}/transaction/transfer
 Content-Type: application/json
 
 {
     "cif_number": "1234567890",
-    "debit_account_number" : "2056165577",
-    "credit_account_number" : "9658585427",
-    "amount" : 3000
+    "debit_account_number" : "7531095214",
+    "credit_account_number" : "4902265825",
+    "amount" : 300
 }
+
+# response:
+# HTTP/1.1 200 OK
+# Server: nginx/1.23.1
+# Date: Thu, 28 Jul 2022 01:31:43 GMT
+# Content-Type: application/json; charset=utf-8
+# Content-Length: 111
+# Connection: close
+# X-Powered-By: Express
+# ETag: W/"6f-RCGp33U8mf7L7yIlB+cJv0A+bBQ"
+
+# {
+#   "elapsed_time": "45ms",
+#   "data": {
+#     "message": "300 has been transfered from 7531095214 to 4902265825 successfully"
+#   }
+# }
+
+###
+GET {{host}}/transactions/1234567890
+
+# response:
+# HTTP/1.1 200 OK
+# Server: nginx/1.23.1
+# Date: Thu, 28 Jul 2022 01:32:36 GMT
+# Content-Type: application/json; charset=utf-8
+# Content-Length: 383
+# Connection: close
+# X-Powered-By: Express
+# ETag: W/"17f-+NAagMzXqy3ciayeWUuLEAAk4Sw"
+
+# {
+#   "elapsed_time": "17ms",
+#   "data": [
+#     {
+#       "_id": "62e1e6ff4843ab95c5c0b25e",
+#       "cif_number": "1234567890",
+#       "debit_account_number": "7531095214",
+#       "debit_account_balance": 700,
+#       "credit_account_number": "4902265825",
+#       "credit_account_balance": 1300,
+#       "amount": 300,
+#       "transaction_type": "TRANSFER",
+#       "journal_number": "6419865137",
+#       "createdAt": "2022-07-28T01:31:43.015Z",
+#       "updatedAt": "2022-07-28T01:31:43.015Z",
+#       "__v": 0
+#     }
+#   ]
+# }
+

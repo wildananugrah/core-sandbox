@@ -11,24 +11,33 @@ exports.findAll = (req, res) => {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.params.account_number
+                data : {
+                    message: "Account not found with account_number " + req.params.account_number
+                }
             });            
         }
         var elapsed_time = new Date() - start
-        res.send({ elapsed_time: `${elapsed_time}ms`, data: historical_transactions });
+        res.send({ 
+            elapsed_time: `${elapsed_time}ms`, 
+            data: historical_transactions 
+        });
     })
     .catch(err => {
         if(err.kind === 'ObjectId') {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.params.account_number
+                data : {
+                    message: "Account not found with account_number " + req.params.account_number
+                }
             });                
         }
         var elapsed_time = new Date() - start
         return res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Error retrieving account with historical transaction account_number: " + req.params.account_number
+            data : {
+                message: "Error retrieving account with historical transaction account_number: " + req.params.account_number
+            }
         });
     })
 }

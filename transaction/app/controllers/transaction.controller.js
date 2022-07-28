@@ -19,13 +19,17 @@ exports.debit = async (req, res) => {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.body.account_number
+                data : {
+                    message: "Account not found with account_number " + req.body.account_number
+                }
             });                
         }
         var elapsed_time = new Date() - start
         return res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Could not retrieve account with account_number " + req.body.account_number
+            data : {
+                message: "Could not retrieve account with account_number " + req.body.account_number
+            }
         });
     }
 
@@ -35,7 +39,9 @@ exports.debit = async (req, res) => {
         var elapsed_time = new Date() - start
         return res.status(400).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: `Unsufficient fund ${req.body.account_number}`
+            data : {
+                message: `Unsufficient fund ${req.body.account_number}`
+            }
         });  
     }
     const current_balance = account.data.data.balance - req.body.amount
@@ -62,14 +68,18 @@ exports.debit = async (req, res) => {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.body.account_number
+                data : {
+                    message: "Account not found with account_number " + req.body.account_number
+                }
             });                
         }
 
         var elapsed_time = new Date() - start
         return res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Could not save account with account_number " + req.body.account_number
+            data : {
+                message: "Could not save account with account_number " + req.body.account_number
+            }
         });
     }
 
@@ -78,7 +88,12 @@ exports.debit = async (req, res) => {
     {
         const update_balance = await axios.put(`${process.env.ACCOUNT_HOST}/account/update_balance/${req.body.account_number}`, { balance: current_balance })
         var elapsed_time = new Date() - start
-        res.send({ elapsed_time: `${elapsed_time}ms`, "message" : `${req.body.account_number} has been deducted by ${req.body.amount} successfully` })
+        res.send({ 
+            elapsed_time: `${elapsed_time}ms`, 
+            data : {
+                "message" : `${req.body.account_number} has been deducted by ${req.body.amount} successfully` 
+            }
+        })
     }
     catch(err)
     {
@@ -86,13 +101,17 @@ exports.debit = async (req, res) => {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.body.account_number
+                data : {
+                    message: "Account not found with account_number " + req.body.account_number
+                }
             });                
         }
         var elapsed_time = new Date() - start
         return res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Could not update account with account_number " + req.body.account_number
+            data : {
+                message: "Could not update account with account_number " + req.body.account_number
+            }
         });
     }
 
@@ -115,13 +134,17 @@ exports.credit = async (req, res) => {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.body.account_number
+                data : {
+                    message: "Account not found with account_number " + req.body.account_number
+                }
             });                
         }
         var elapsed_time = new Date() - start
         return res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Could not retrieve account with account_number " + req.body.account_number
+            data : {
+                message: "Could not retrieve account with account_number " + req.body.account_number
+            }
         });
     }
 
@@ -151,13 +174,17 @@ exports.credit = async (req, res) => {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.body.account_number
+                data : {
+                    message: "Account not found with account_number " + req.body.account_number
+                }
             });                
         }
         var elapsed_time = new Date() - start
         return res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Could not save account with account_number " + req.body.account_number
+            data : {
+                message: "Could not save account with account_number " + req.body.account_number
+            }
         });
     }
 
@@ -165,13 +192,21 @@ exports.credit = async (req, res) => {
     axios.put(`${process.env.ACCOUNT_HOST}/account/update_balance/${req.body.account_number}`, { balance: current_balance })
     .then(data => {
         var elapsed_time = new Date() - start
-        res.send({ elapsed_time: `${elapsed_time}ms`, "message" : `${req.body.account_number} has been credited by ${req.body.amount} successfully`, journal_number: journal_number })
+        res.send({ 
+            elapsed_time: `${elapsed_time}ms`, 
+            data : {
+                message : `${req.body.account_number} has been credited by ${req.body.amount} successfully`, 
+                journal_number: journal_number 
+            }
+        })
     })
     .catch(err => {
         var elapsed_time = new Date() - start
         res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: err.message || "Some error occurred while updating the Account Balance."
+            data : {
+                message: err.message || "Some error occurred while updating the Account Balance."
+            }
         });
     })
 }
@@ -193,13 +228,17 @@ exports.transfer = async (req, res) => {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.body.debit_account_number
+                data : {
+                    message: "Account not found with account_number " + req.body.debit_account_number
+                }
             });                
         }
         var elapsed_time = new Date() - start
         return res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Could not update account with account_number " + req.body.debit_account_number
+            data : {
+                message: "Could not update account with account_number " + req.body.debit_account_number
+            }
         });
     }
 
@@ -215,13 +254,17 @@ exports.transfer = async (req, res) => {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.body.credit_account_number
+                data : {
+                    message: "Account not found with account_number " + req.body.credit_account_number
+                }
             });                
         }
         var elapsed_time = new Date() - start
         return res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Could not update account with account_number " + req.body.credit_account_number
+            data : {
+                message: "Could not update account with account_number " + req.body.credit_account_number
+            }
         });
     }
 
@@ -232,12 +275,14 @@ exports.transfer = async (req, res) => {
         var elapsed_time = new Date() - start
         return res.status(400).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: `Unsufficient fund account_number: ${req.body.debit_account_number}`
+            data : {
+                message: `Unsufficient fund account_number: ${req.body.debit_account_number}`
+            }
         });  
     }
 
     const current_debit_account_balance = debit_account.data.data.balance - req.body.amount
-    const current_credit_account_balance = debit_account.data.data.balance + req.body.amount
+    const current_credit_account_balance = credit_account.data.data.balance + req.body.amount
     const journal_number = randomLengthNumber(10)
 
     // Store historical transaction 
@@ -261,13 +306,17 @@ exports.transfer = async (req, res) => {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with account_number " + req.body.debit_account_number
+                data : {
+                    message: "Account not found with account_number " + req.body.debit_account_number
+                }
             });                
         }
         var elapsed_time = new Date() - start
         return res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Failed in writing to Historical Transaction: debit account number " + req.body.debit_account_number
+            data : {
+                message: "Failed in writing to Historical Transaction: debit account number " + req.body.debit_account_number
+            }
         });
     }
 
@@ -290,7 +339,9 @@ exports.transfer = async (req, res) => {
         var elapsed_time = new Date() - start
         return res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Failed in writing to Historical Transaction: credit account number " + req.body.credit_account_number
+            data : {
+                message: "Failed in writing to Historical Transaction: credit account number " + req.body.credit_account_number
+            }
         });
     }
 
@@ -316,7 +367,9 @@ exports.transfer = async (req, res) => {
         var elapsed_time = new Date() - start
         return res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Failed in writing to Transaction " + req.body.credit_account_number
+            data : {
+                message: "Failed in writing to Transaction " + req.body.credit_account_number
+            }
         });
     }
 
@@ -331,13 +384,17 @@ exports.transfer = async (req, res) => {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with debit account_number " + req.body.debit_account_number
+                data : {
+                    message: "Account not found with debit account_number " + req.body.debit_account_number
+                }
             });                
         }
         var elapsed_time = new Date() - start
         return res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Could not update account with debit account_number " + req.body.debit_account_number
+            data : {
+                message: "Could not update account with debit account_number " + req.body.debit_account_number
+            }
         });
     }
     
@@ -345,7 +402,12 @@ exports.transfer = async (req, res) => {
     {
         const credit_account_balance_update = await axios.put(`${process.env.ACCOUNT_HOST}/account/update_balance/${req.body.credit_account_number}`, { balance: current_credit_account_balance })
         var elapsed_time = new Date() - start
-        res.send({ elapsed_time: `${elapsed_time}ms`, "message" : `${req.body.amount} has been transfered from ${req.body.debit_account_number} to ${req.body.credit_account_number} successfully` })
+        res.send({ 
+            elapsed_time: `${elapsed_time}ms`, 
+            data : {
+                message : `${req.body.amount} has been transfered from ${req.body.debit_account_number} to ${req.body.credit_account_number} successfully` 
+            }
+        })
     }
     catch(err)
     {
@@ -353,13 +415,17 @@ exports.transfer = async (req, res) => {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with credit account_number " + req.body.credit_account_number
+                data : {
+                    message: "Account not found with credit account_number " + req.body.credit_account_number
+                }
             });                
         }
         var elapsed_time = new Date() - start
         return res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Could not update account with credit account_number " + req.body.credit_account_number
+            data : {
+                message: "Could not update account with credit account_number " + req.body.credit_account_number
+            }
         });
     }
 }
@@ -375,7 +441,9 @@ exports.findAll = (req, res) => {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with cif_number " + req.params.cif_number
+                data : {
+                    message: "Account not found with cif_number " + req.params.cif_number
+                }
             });            
         }
         var elapsed_time = new Date() - start
@@ -386,13 +454,17 @@ exports.findAll = (req, res) => {
             var elapsed_time = new Date() - start
             return res.status(404).send({
                 elapsed_time: `${elapsed_time}ms`,
-                message: "Account not found with cif_number " + req.params.cif_number
+                data : {
+                    message: "Account not found with cif_number " + req.params.cif_number
+                }
             });                
         }
         var elapsed_time = new Date() - start
         return res.status(500).send({
             elapsed_time: `${elapsed_time}ms`,
-            message: "Error retrieving account with transaction cif_number: " + req.params.cif_number
+            data : {
+                message: "Error retrieving account with transaction cif_number: " + req.params.cif_number
+            }
         });
     })
 }

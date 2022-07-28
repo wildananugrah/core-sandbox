@@ -1,72 +1,72 @@
 @host=http://localhost:4000
 
 ###
-GET {{host}}/historical_transaction/2746846644/0/100
+GET {{host}}/historical_transaction/1694461831/0/100
 
 # response:
 # HTTP/1.1 200 OK
 # Server: nginx/1.23.1
-# Date: Wed, 27 Jul 2022 13:59:40 GMT
+# Date: Thu, 28 Jul 2022 01:37:46 GMT
 # Content-Type: application/json; charset=utf-8
-# Content-Length: 1122
+# Content-Length: 1085
 # Connection: close
 # X-Powered-By: Express
-# ETag: W/"462-b4ksBQijB2VFabr92eaaRr+BVKo"
+# ETag: W/"43d-nEku110akSAwzsH/OqS+q2KsL1A"
 
 # {
-#   "elapsed_time": "21ms",
+#   "elapsed_time": "9ms",
 #   "data": [
 #     {
-#       "_id": "62e1449f5a2ffc4054f9a487",
-#       "account_number": "2746846644",
-#       "current_balance": 100,
-#       "amount": 300,
-#       "journal_number": "3902680656",
-#       "action": "DEBIT",
-#       "transaction_type": "TRANSFER",
-#       "createdAt": "2022-07-27T13:58:55.695Z",
-#       "updatedAt": "2022-07-27T13:58:55.695Z",
-#       "__v": 0
-#     },
-#     {
-#       "_id": "62e1449e5a2ffc4054f9a481",
-#       "account_number": "2746846644",
-#       "current_balance": 400,
-#       "amount": 300,
-#       "journal_number": "8799638257",
-#       "action": "DEBIT",
-#       "transaction_type": "TRANSFER",
-#       "createdAt": "2022-07-27T13:58:54.559Z",
-#       "updatedAt": "2022-07-27T13:58:54.559Z",
-#       "__v": 0
-#     },
-#     {
-#       "_id": "62e14475ef39f6f45e83fed4",
-#       "account_number": "2746846644",
+#       "_id": "62e1e83062926c47225ddef4",
+#       "account_number": "1694461831",
 #       "current_balance": 700,
-#       "amount": 300,
-#       "journal_number": "3665987063",
+#       "amount": 100,
+#       "journal_number": "1857771513",
 #       "action": "DEBIT",
 #       "transaction_type": "TRANSFER",
-#       "createdAt": "2022-07-27T13:58:14.000Z",
-#       "updatedAt": "2022-07-27T13:58:14.000Z",
+#       "createdAt": "2022-07-28T01:36:48.122Z",
+#       "updatedAt": "2022-07-28T01:36:48.122Z",
 #       "__v": 0
 #     },
 #     {
-#       "_id": "62e1445fef39f6f45e83fed2",
-#       "account_number": "2746846644",
+#       "_id": "62e1e82f62926c47225ddeee",
+#       "account_number": "1694461831",
+#       "current_balance": 800,
+#       "amount": 100,
+#       "journal_number": "5464542997",
+#       "action": "DEBIT",
+#       "transaction_type": "TRANSFER",
+#       "createdAt": "2022-07-28T01:36:47.883Z",
+#       "updatedAt": "2022-07-28T01:36:47.883Z",
+#       "__v": 0
+#     },
+#     {
+#       "_id": "62e1e82d62926c47225ddee8",
+#       "account_number": "1694461831",
+#       "current_balance": 900,
+#       "amount": 100,
+#       "journal_number": "6411231757",
+#       "action": "DEBIT",
+#       "transaction_type": "TRANSFER",
+#       "createdAt": "2022-07-28T01:36:45.373Z",
+#       "updatedAt": "2022-07-28T01:36:45.373Z",
+#       "__v": 0
+#     },
+#     {
+#       "_id": "62e1e82562926c47225ddee6",
+#       "account_number": "1694461831",
 #       "current_balance": 1000,
 #       "amount": 1000,
-#       "journal_number": "7873872729",
+#       "journal_number": "3627347507",
 #       "action": "CREDIT",
 #       "transaction_type": "DEPOSIT",
-#       "description": "DEPOSIT MONEY FIRST",
-#       "createdAt": "2022-07-27T13:57:51.730Z",
-#       "updatedAt": "2022-07-27T13:57:51.730Z",
+#       "createdAt": "2022-07-28T01:36:37.893Z",
+#       "updatedAt": "2022-07-28T01:36:37.893Z",
 #       "__v": 0
 #     }
 #   ]
 # }
+
 
 
 ### 

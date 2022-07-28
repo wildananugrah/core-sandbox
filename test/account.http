@@ -16,30 +16,31 @@ Content-Type: application/json
 # response:
 # HTTP/1.1 200 OK
 # Server: nginx/1.23.1
-# Date: Wed, 27 Jul 2022 13:22:14 GMT
+# Date: Thu, 28 Jul 2022 01:27:28 GMT
 # Content-Type: application/json; charset=utf-8
-# Content-Length: 251
+# Content-Length: 252
 # Connection: close
 # X-Powered-By: Express
-# ETag: W/"fb-AZNOo8k6VRYhOyoVEnp4VIzB1us"
+# ETag: W/"fc-DOk/v9X7K7sdjYxOpO+oPAifZcY"
 
 # {
 #   "data": {
-#     "account_number": "4562270602",
+#     "account_number": "2300741325",
 #     "currency": "IDR",
 #     "balance": 0,
 #     "status": "BUKA",
 #     "cif_number": "1234567890",
-#     "_id": "62e13c0627e82f33a898099b",
-#     "createdAt": "2022-07-27T13:22:14.950Z",
-#     "updatedAt": "2022-07-27T13:22:14.950Z",
+#     "_id": "62e1e6003d74051b341497d3",
+#     "createdAt": "2022-07-28T01:27:28.231Z",
+#     "updatedAt": "2022-07-28T01:27:28.231Z",
 #     "__v": 0
 #   },
-#   "elapsed_time": "5ms"
+#   "elapsed_time": "19ms"
 # }
 
+
 ###
-PUT {{host}}/account/update_balance/3617830999
+PUT {{host}}/account/update_balance/4902265825
 Content-Type: application/json
 
 {
@@ -49,17 +50,20 @@ Content-Type: application/json
 # response:
 # HTTP/1.1 200 OK
 # Server: nginx/1.23.1
-# Date: Wed, 27 Jul 2022 13:22:42 GMT
+# Date: Thu, 28 Jul 2022 01:28:09 GMT
 # Content-Type: application/json; charset=utf-8
-# Content-Length: 65
+# Content-Length: 74
 # Connection: close
 # X-Powered-By: Express
-# ETag: W/"41-EncijTYWA/s1Tz79yO09zcGqyt4"
+# ETag: W/"4a-Qc9LPFV/zjsMeA0nXtSLY4NFFIc"
 
 # {
 #   "elapsed_time": "18ms",
-#   "message": "Account updated successfully!"
+#   "data": {
+#     "message": "Account updated successfully!"
+#   }
 # }
+
 
 
 ###
@@ -67,26 +71,29 @@ PUT {{host}}/account/settlement
 Content-Type: application/json
 
 {
-    "debit_account_number" : "3617830999",
+    "debit_account_number" : "4902265825",
     "debit_account_balance" : 700,
-    "credit_account_number" : "9907819018",
+    "credit_account_number" : "2300741325",
     "credit_account_balance" : 300
 }
 
 # response:
 # HTTP/1.1 200 OK
 # Server: nginx/1.23.1
-# Date: Wed, 27 Jul 2022 13:24:27 GMT
+# Date: Thu, 28 Jul 2022 01:28:43 GMT
 # Content-Type: application/json; charset=utf-8
-# Content-Length: 65
+# Content-Length: 74
 # Connection: close
 # X-Powered-By: Express
-# ETag: W/"41-zFrrw6QniB7RDf4GEWhwmq3rveo"
+# ETag: W/"4a-3YxPL7XzqAsS2XgrWUJ9OxoFIL0"
 
 # {
-#   "elapsed_time": "25ms",
-#   "message": "Account updated successfully!"
+#   "elapsed_time": "16ms",
+#   "data": {
+#     "message": "Account updated successfully!"
+#   }
 # }
+
 
 
 ###
@@ -95,75 +102,71 @@ GET {{host}}/accounts/1234567890
 # response:
 # HTTP/1.1 200 OK
 # Server: nginx/1.23.1
-# Date: Wed, 27 Jul 2022 13:22:59 GMT
+# Date: Thu, 28 Jul 2022 01:28:57 GMT
 # Content-Type: application/json; charset=utf-8
-# Content-Length: 1144
+# Content-Length: 479
 # Connection: close
 # X-Powered-By: Express
-# ETag: W/"478-/dYA/nyCFHMo7+FlicdeLs6M3Ok"
+# ETag: W/"1df-pPWCaNSmjnL+wpt3DvwjkX4oA6g"
 
 # {
 #   "elapsed_time": "7ms",
 #   "data": [
 #     {
-#       "_id": "62e13be472beed4499026758",
-#       "account_number": "9796527276",
+#       "_id": "62e1e6003d74051b341497d3",
+#       "account_number": "2300741325",
 #       "currency": "IDR",
-#       "balance": 0,
+#       "balance": 300,
 #       "status": "BUKA",
 #       "cif_number": "1234567890",
-#       "createdAt": "2022-07-27T13:21:40.652Z",
-#       "updatedAt": "2022-07-27T13:21:40.652Z",
+#       "createdAt": "2022-07-28T01:27:28.231Z",
+#       "updatedAt": "2022-07-28T01:28:43.694Z",
 #       "__v": 0
 #     },
 #     {
-#       "_id": "62e13c0227e82f33a8980995",
-#       "account_number": "8059825621",
+#       "_id": "62e1e6183d74051b341497d5",
+#       "account_number": "4902265825",
 #       "currency": "IDR",
-#       "balance": 0,
+#       "balance": 700,
 #       "status": "BUKA",
 #       "cif_number": "1234567890",
-#       "createdAt": "2022-07-27T13:22:10.807Z",
-#       "updatedAt": "2022-07-27T13:22:10.807Z",
+#       "createdAt": "2022-07-28T01:27:52.853Z",
+#       "updatedAt": "2022-07-28T01:28:43.687Z",
 #       "__v": 0
 #     }
 #   ]
 # }
 
-
-
 ###
-GET {{host}}/account/2746846644
+GET {{host}}/account/2300741325
 
 # response:
 # HTTP/1.1 200 OK
 # Server: nginx/1.23.1
-# Date: Wed, 27 Jul 2022 13:25:54 GMT
+# Date: Thu, 28 Jul 2022 01:29:17 GMT
 # Content-Type: application/json; charset=utf-8
-# Content-Length: 254
+# Content-Length: 253
 # Connection: close
 # X-Powered-By: Express
-# ETag: W/"fe-uDSjXzg+WTF/tCnCPgjHNFw/wlk"
+# ETag: W/"fd-YsCAEQPoMMou2v04X5feix0QdBs"
 
 # {
-#   "elapsed_time": "17ms",
+#   "elapsed_time": "9ms",
 #   "data": {
-#     "_id": "62e13be472beed4499026758",
-#     "account_number": "9796527276",
+#     "_id": "62e1e6003d74051b341497d3",
+#     "account_number": "2300741325",
 #     "currency": "IDR",
 #     "balance": 300,
 #     "status": "BUKA",
 #     "cif_number": "1234567890",
-#     "createdAt": "2022-07-27T13:21:40.652Z",
-#     "updatedAt": "2022-07-27T13:24:27.632Z",
+#     "createdAt": "2022-07-28T01:27:28.231Z",
+#     "updatedAt": "2022-07-28T01:28:43.694Z",
 #     "__v": 0
 #   }
 # }
 
-
-
 ###
-PUT {{host}}/account/9907819018
+PUT {{host}}/account/2300741325
 Content-Type: application/json
 
 {
@@ -173,34 +176,40 @@ Content-Type: application/json
 # response:
 # HTTP/1.1 200 OK
 # Server: nginx/1.23.1
-# Date: Wed, 27 Jul 2022 13:26:15 GMT
+# Date: Thu, 28 Jul 2022 01:29:47 GMT
 # Content-Type: application/json; charset=utf-8
-# Content-Length: 65
+# Content-Length: 73
 # Connection: close
 # X-Powered-By: Express
-# ETag: W/"41-tmrg5/NR9geNrM4EdT5ivkum/No"
+# ETag: W/"49-2IEmPcMnVjYdKvwBTyHwhZTWjQ4"
 
 # {
-#   "elapsed_time": "11ms",
-#   "message": "Account updated successfully!"
+#   "elapsed_time": "5ms",
+#   "data": {
+#     "message": "Account updated successfully!"
+#   }
 # }
 
 
+
 ###
-DELETE {{host}}/account/9907819018
+DELETE {{host}}/account/2300741325
 
 # response:
 # HTTP/1.1 200 OK
 # Server: nginx/1.23.1
-# Date: Wed, 27 Jul 2022 13:27:10 GMT
+# Date: Thu, 28 Jul 2022 01:30:07 GMT
 # Content-Type: application/json; charset=utf-8
-# Content-Length: 64
+# Content-Length: 73
 # Connection: close
 # X-Powered-By: Express
-# ETag: W/"40-T2LAYFdR74u9xM0oplixmk4EhXw"
+# ETag: W/"49-VVyQT0eGphicWF0aslHAcKFNMFg"
 
 # {
-#   "elapsed_time": "8ms",
-#   "message": "Account deleted successfully!"
+#   "elapsed_time": "5ms",
+#   "data": {
+#     "message": "Account deleted successfully!"
+#   }
 # }
+
 
