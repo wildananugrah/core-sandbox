@@ -1,4 +1,4 @@
-@host=http://localhost:4000
+@host=http://localhost:3000
 
 ###
 GET {{host}}/
@@ -40,7 +40,7 @@ Content-Type: application/json
 
 
 ###
-PUT {{host}}/account/update_balance/4902265825
+PUT {{host}}/account/update_balance/1407146532
 Content-Type: application/json
 
 {
@@ -71,9 +71,9 @@ PUT {{host}}/account/settlement
 Content-Type: application/json
 
 {
-    "debit_account_number" : "4902265825",
+    "debit_account_number" : "1407146532",
     "debit_account_balance" : 700,
-    "credit_account_number" : "2300741325",
+    "credit_account_number" : "3289525489",
     "credit_account_balance" : 300
 }
 
@@ -138,7 +138,7 @@ GET {{host}}/accounts/1234567890
 # }
 
 ###
-GET {{host}}/account/2300741325
+GET {{host}}/account/8606011070
 
 # response:
 # HTTP/1.1 200 OK
@@ -166,7 +166,7 @@ GET {{host}}/account/2300741325
 # }
 
 ###
-PUT {{host}}/account/2300741325
+PUT {{host}}/account/3289525489
 Content-Type: application/json
 
 {
@@ -193,7 +193,7 @@ Content-Type: application/json
 
 
 ###
-DELETE {{host}}/account/2300741325
+DELETE {{host}}/account/3289525489
 
 # response:
 # HTTP/1.1 200 OK

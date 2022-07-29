@@ -1,7 +1,7 @@
-@host=http://localhost:4000
+@host=http://localhost:4020
 
 ###
-GET {{host}}/historical_transaction/1694461831/0/100
+GET {{host}}/historical_transaction/1407146532/0/100
 
 # response:
 # HTTP/1.1 200 OK

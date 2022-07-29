@@ -6,14 +6,14 @@ services:
             dockerfile: ./app.Dockerfile
         container_name: account
         environment: 
-            MONGODB_HOST: mongodb://192.168.0.107:5000/core-sandbox
+            MONGODB_HOST: mongodb://192.168.160.138:5000/core-sandbox
     transaction:
         build:
             context: ./transaction
             dockerfile: ./app.Dockerfile
         container_name: transaction
         environment: 
-            MONGODB_HOST: mongodb://192.168.0.107:5000/core-sandbox
+            MONGODB_HOST: mongodb://192.168.160.138:5000/core-sandbox
             ACCOUNT_HOST: http://account:3000
     historical_transaction:
         build:
@@ -21,7 +21,7 @@ services:
             dockerfile: ./app.Dockerfile
         container_name: historical_transaction
         environment: 
-            MONGODB_HOST: mongodb://192.168.0.107:5000/core-sandbox
+            MONGODB_HOST: mongodb://192.168.160.138:5000/core-sandbox
     nginx:
         build:
             context: ./nginx
